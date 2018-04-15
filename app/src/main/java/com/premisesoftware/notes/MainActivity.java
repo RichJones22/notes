@@ -1,5 +1,6 @@
 package com.premisesoftware.notes;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        DBOpenHelper helper = new DBOpenHelper(this, DBOpenHelper.DATABASE_NAME, DBOpenHelper.FACTORY, DBOpenHelper.DATABASE_VERSION);
+        SQLiteDatabase database = helper.getWritableDatabase();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     @Override
